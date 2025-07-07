@@ -36,7 +36,7 @@ const ProcessSections = () => {
   ];
 
   return (
-    <section className="py-32 bg-background relative overflow-hidden">
+    <section className="py-20 bg-background relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10"></div>
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
@@ -48,7 +48,7 @@ const ProcessSections = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-light mb-6 text-foreground tracking-tight">
             Our Three-Phase
@@ -60,46 +60,41 @@ const ProcessSections = () => {
           </p>
         </motion.div>
 
-        <div className="max-w-6xl mx-auto">
-          {processes.map((process, index) => (
-            <motion.div
-              key={process.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className="relative mb-16 last:mb-0"
-            >
-              {/* Connection Line */}
-              {index < processes.length - 1 && (
-                <div className="absolute left-1/2 transform -translate-x-1/2 bottom-0 w-px h-16 bg-gradient-to-b from-primary to-transparent z-0"></div>
-              )}
-              
-              <div className="glass rounded-3xl p-8 md:p-12 border border-border hover:glass-hover transition-all duration-500 relative overflow-hidden">
-                {/* Background Pattern */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-16 translate-x-16"></div>
-                
-                <div className="relative z-10">
-                  <div className="flex flex-col lg:flex-row items-start gap-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {processes.map((process, index) => (
+              <motion.div
+                key={process.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <div className="glass rounded-3xl p-8 border border-border hover:glass-hover transition-all duration-500 relative overflow-hidden h-full">
+                  {/* Background Pattern */}
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full -translate-y-12 translate-x-12"></div>
+                  
+                  <div className="relative z-10 h-full flex flex-col">
                     {/* Number and Title Section */}
-                    <div className="lg:w-1/3">
+                    <div className="mb-6">
                       <div className="flex items-center gap-4 mb-6">
                         <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center text-white font-bold text-xl">
                           {process.number}
                         </div>
                         <div className="h-px flex-1 bg-gradient-to-r from-primary to-transparent"></div>
                       </div>
-                      <h3 className="text-2xl md:text-3xl font-light text-foreground mb-4 leading-tight">
+                      <h3 className="text-2xl font-light text-foreground mb-4 leading-tight">
                         {process.title}
                       </h3>
-                      <p className="text-muted-foreground leading-relaxed">
+                      <p className="text-muted-foreground leading-relaxed text-sm">
                         {process.description}
                       </p>
                     </div>
 
                     {/* Items Section */}
-                    <div className="lg:w-2/3">
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="flex-1">
+                      <div className="space-y-3">
                         {process.items.map((item, itemIndex) => (
                           <motion.div
                             key={item}
@@ -109,12 +104,11 @@ const ProcessSections = () => {
                             viewport={{ once: true }}
                             className="group"
                           >
-                            <div className="bg-background/50 backdrop-blur-sm rounded-xl p-6 border border-border/50 hover:border-primary/30 transition-all duration-300 h-full">
-                              <div className="flex items-center gap-3 mb-3">
-                                <div className="w-3 h-3 rounded-full bg-gradient-to-r from-primary to-primary/70 group-hover:scale-110 transition-transform duration-300"></div>
-                                <div className="h-px flex-1 bg-gradient-to-r from-primary/30 to-transparent"></div>
+                            <div className="bg-background/30 backdrop-blur-sm rounded-xl p-4 border border-border/30 hover:border-primary/30 transition-all duration-300">
+                              <div className="flex items-center gap-3">
+                                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-primary to-primary/70 group-hover:scale-125 transition-transform duration-300"></div>
+                                <span className="text-foreground font-medium text-sm">{item}</span>
                               </div>
-                              <span className="text-foreground font-medium">{item}</span>
                             </div>
                           </motion.div>
                         ))}
@@ -122,9 +116,14 @@ const ProcessSections = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+
+                {/* Connection Line for desktop */}
+                {index < processes.length - 1 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-px bg-gradient-to-r from-primary to-primary/30 z-20"></div>
+                )}
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Call to Action */}
@@ -133,7 +132,7 @@ const ProcessSections = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mt-20"
+          className="text-center mt-16"
         >
           <div className="glass rounded-2xl p-8 border border-border max-w-2xl mx-auto">
             <h3 className="text-2xl font-light text-foreground mb-4">
