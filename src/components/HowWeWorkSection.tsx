@@ -119,7 +119,7 @@ const HowWeWorkSection = () => {
               <ArrowRight className="w-5 h-5" />
             </button>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
