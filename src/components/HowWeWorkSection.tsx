@@ -6,53 +6,28 @@ const HowWeWorkSection = () => {
   const steps = [
     {
       icon: Lightbulb,
-      title: "Discovery / Ideation Phase",
-      description: "We align stakeholders to identify core challenges, goals, and opportunities by engaging in collaborative discussions and analysis.",
-      points: [
-        "Key Stakeholders & Decision Makers",
-        "Pain Points & Operational Challenges", 
-        "Success Metrics & ROI Expectations"
-      ]
+      title: "Discovery",
+      description: "In the first week, we align your legal, compliance, IT, and business leaders to identify key challenges and define success. These insights shape a clear Solution Blueprint outlining scope, timelines, and expected ROI."
     },
     {
       icon: CheckCircle,
-      title: "Proof of Concept Phase",
-      description: "We create a secure environment to test the platform, allowing quick validation of its accuracy and efficiency.",
-      points: [
-        "Sandbox Environment Setup",
-        "Document Processing & Testing",
-        "Performance & Accuracy Validation"
-      ]
+      title: "Proof of Concept",
+      description: "We create a secure sandbox to test the platform with a representative set of your documents. This quick validation demonstrates accuracy, efficiency, and impact in a low-risk environment."
     },
     {
       icon: Rocket,
-      title: "Enterprise Rollout Phase", 
-      description: "We deploy the solution securely across your preferred infrastructure, ensuring smooth system integration.",
-      points: [
-        "Cloud, Hybrid, or On-Premises Deployment",
-        "System Integration & Security Validation",
-        "Initial Data Migration & Go-Live"
-      ]
+      title: "Enterprise Rollout", 
+      description: "With proven results, we deploy the solution in your preferred hosting model—cloud, hybrid, or on-premises—integrate critical systems, validate security, and migrate initial data. Your solution goes live, ready for everyday use."
     },
     {
       icon: GraduationCap,
-      title: "Training & Change Management Phase",
-      description: "We focus on enabling your teams through training, communication, and support to drive adoption and productivity.",
-      points: [
-        "Tailored User Training Sessions",
-        "Clear Communication Plans",
-        "Adoption Tracking & Feedback Loops"
-      ]
+      title: "Training & Change Management",
+      description: "We drive adoption with tailored training, clear communications, and real-time usage insights—helping your teams embrace new workflows and achieve sustainable efficiency gains."
     },
     {
       icon: TrendingUp,
-      title: "Continuous Optimisation Phase",
-      description: "We ensure long-term success through ongoing monitoring, support, and enhancement of the solution.",
-      points: [
-        "Dedicated Customer Success Manager",
-        "Continuous Model Improvements",
-        "Regular Updates & Compliance Adjustments"
-      ]
+      title: "Continuous Optimisation",
+      description: "Post-launch, a dedicated Customer Success Manager monitors key metrics, refines models, rolls out enhancements, and coordinates ongoing support. The platform evolves with your caseload and regulatory needs, freeing your team to focus on higher-value strategy."
     }
   ];
 
@@ -115,18 +90,9 @@ const HowWeWorkSection = () => {
                         </h3>
                       </div>
                       
-                      <p className="text-muted-foreground mb-6 leading-relaxed text-lg">
+                      <p className="text-muted-foreground leading-relaxed text-lg">
                         {step.description}
                       </p>
-                      
-                      <div className="space-y-3">
-                        {step.points.map((point, pointIndex) => (
-                          <div key={pointIndex} className="flex items-center gap-3 text-sm text-muted-foreground">
-                            <div className="w-2 h-2 rounded-full bg-primary/60 flex-shrink-0"></div>
-                            <span>{point}</span>
-                          </div>
-                        ))}
-                      </div>
                     </div>
                   </div>
 
@@ -176,19 +142,9 @@ const HowWeWorkSection = () => {
                     </div>
                     
                     {/* Description */}
-                    <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
+                    <p className="text-muted-foreground leading-relaxed text-sm">
                       {step.description}
                     </p>
-                    
-                    {/* Points */}
-                    <div className="space-y-2">
-                      {step.points.map((point, pointIndex) => (
-                        <div key={pointIndex} className="flex items-start gap-3 text-xs text-muted-foreground">
-                          <div className="w-1.5 h-1.5 rounded-full bg-primary/60 flex-shrink-0 mt-2"></div>
-                          <span className="leading-relaxed">{point}</span>
-                        </div>
-                      ))}
-                    </div>
                   </div>
 
                   {/* Connection Line (except for last item) */}
