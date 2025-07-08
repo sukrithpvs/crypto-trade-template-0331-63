@@ -88,10 +88,10 @@ const HowWeWorkSection = () => {
             </p>
           </div>
 
-          {/* Timeline */}
-          <div className="relative">
+          {/* Timeline - Desktop Layout */}
+          <div className="relative hidden lg:block">
             {/* Vertical Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-primary/20 via-primary/40 to-primary/20 hidden lg:block"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-primary/20 via-primary/40 to-primary/20"></div>
             
             {/* Steps */}
             <div className="space-y-16">
@@ -101,12 +101,12 @@ const HowWeWorkSection = () => {
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
-                  className={`flex items-center ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} flex-col lg:gap-16 gap-8`}
+                  className={`flex items-center ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-16`}
                 >
                   {/* Content */}
-                  <div className={`flex-1 ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'} text-center lg:text-left`}>
+                  <div className={`flex-1 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
                     <div className="bg-card/50 backdrop-blur-sm rounded-3xl p-8 border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 group">
-                      <div className="flex items-center gap-4 mb-6 justify-center lg:justify-start">
+                      <div className="flex items-center gap-4 mb-6 justify-start">
                         <div className="text-4xl font-bold text-primary/30">
                           {String(index + 1).padStart(2, '0')}
                         </div>
@@ -131,7 +131,7 @@ const HowWeWorkSection = () => {
                   </div>
 
                   {/* Icon */}
-                  <div className="relative lg:flex-shrink-0">
+                  <div className="relative flex-shrink-0">
                     <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center text-white shadow-xl relative z-10 group-hover:scale-110 transition-transform duration-300">
                       <step.icon className="w-10 h-10" />
                     </div>
@@ -139,7 +139,64 @@ const HowWeWorkSection = () => {
                   </div>
 
                   {/* Spacer for opposite side */}
-                  <div className="flex-1 hidden lg:block"></div>
+                  <div className="flex-1"></div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile Layout */}
+          <div className="lg:hidden">
+            <div className="space-y-6">
+              {steps.map((step, index) => (
+                <motion.div
+                  key={step.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="relative"
+                >
+                  {/* Mobile Card */}
+                  <div className="bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm rounded-2xl p-6 border border-border/50 hover:border-primary/30 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    {/* Header with Icon and Number */}
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="relative">
+                        <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center text-white shadow-lg">
+                          <step.icon className="w-7 h-7" />
+                        </div>
+                        <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">
+                          {index + 1}
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-foreground leading-tight">
+                          {step.title}
+                        </h3>
+                      </div>
+                    </div>
+                    
+                    {/* Description */}
+                    <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
+                      {step.description}
+                    </p>
+                    
+                    {/* Points */}
+                    <div className="space-y-2">
+                      {step.points.map((point, pointIndex) => (
+                        <div key={pointIndex} className="flex items-start gap-3 text-xs text-muted-foreground">
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary/60 flex-shrink-0 mt-2"></div>
+                          <span className="leading-relaxed">{point}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Connection Line (except for last item) */}
+                  {index < steps.length - 1 && (
+                    <div className="flex justify-center py-2">
+                      <div className="w-px h-8 bg-gradient-to-b from-primary/30 to-primary/10"></div>
+                    </div>
+                  )}
                 </motion.div>
               ))}
             </div>
@@ -152,19 +209,19 @@ const HowWeWorkSection = () => {
             transition={{ delay: 1.2 }}
             className="text-center mt-20"
           >
-            <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 rounded-3xl p-12 border border-primary/20">
-              <h3 className="text-3xl font-semibold mb-4 text-foreground">
+            <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 rounded-3xl p-8 lg:p-12 border border-primary/20">
+              <h3 className="text-2xl lg:text-3xl font-semibold mb-4 text-foreground">
                 Ready to Transform Your Practice?
               </h3>
-              <p className="text-muted-foreground mb-8 text-lg max-w-2xl mx-auto">
+              <p className="text-muted-foreground mb-6 lg:mb-8 text-base lg:text-lg max-w-2xl mx-auto">
                 Let's discuss how our proven methodology can accelerate your AI adoption journey.
               </p>
               <button 
-                className="bg-gradient-to-r from-primary to-primary/80 text-white px-8 py-4 rounded-full font-medium text-lg hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 flex items-center gap-3 mx-auto hover:scale-105"
+                className="bg-gradient-to-r from-primary to-primary/80 text-white px-6 lg:px-8 py-3 lg:py-4 rounded-full font-medium text-base lg:text-lg hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 flex items-center gap-3 mx-auto hover:scale-105"
                 onClick={() => window.location.href = '/contact'}
               >
                 Start Your Transformation
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5" />
               </button>
             </div>
           </motion.div>
