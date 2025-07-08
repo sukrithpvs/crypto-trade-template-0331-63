@@ -26,7 +26,7 @@ const faqData = [
   }
 ];
 
-export const FAQSection = () => {
+const FAQSection = () => {
   return (
     <section className="container px-4 py-24">
       <motion.div
@@ -62,3 +62,5 @@ export const FAQSection = () => {
     </section>
   );
 };
+
+export default FAQSection;
