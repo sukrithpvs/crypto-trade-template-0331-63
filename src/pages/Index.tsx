@@ -1,16 +1,29 @@
 
+import { Suspense, memo } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
-import { FAQSection } from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
-import StatsSection from "@/components/StatsSection";
-import BenefitsSection from "@/components/BenefitsSection";
-import CTASection from "@/components/CTASection";
-import HowWeWorkSection from "@/components/HowWeWorkSection";
-import BlogPreview from "@/components/BlogPreview";
+import OptimizedLogoCarousel from "@/components/OptimizedLogoCarousel";
+import {
+  LazyHowWeWorkSection,
+  LazyBenefitsSection,
+  LazyStatsSection,
+  LazyBlogPreview,
+  LazyFAQSection,
+  LazyCTASection
+} from "@/components/LazyComponents";
+
+// Loading component for Suspense
+const SectionLoader = memo(() => (
+  <div className="py-24 flex items-center justify-center">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+  </div>
+));
+
+SectionLoader.displayName = 'SectionLoader';
 
 const Index = () => {
   return (
@@ -74,25 +87,37 @@ const Index = () => {
         </div>
       </motion.section>
 
-      {/* Stats Section */}
-      <StatsSection />
+      {/* Logo Carousel */}
+      <OptimizedLogoCarousel />
 
-      {/* Benefits Section */}
-      <BenefitsSection />
+      {/* Lazy-loaded sections with Suspense */}
+      <Suspense fallback={<SectionLoader />}>
+        <LazyStatsSection />
+      </Suspense>
 
-      {/* How We Work Section */}
-      <HowWeWorkSection />
+      <Suspense fallback={<SectionLoader />}>
+        <LazyBenefitsSection />
+      </Suspense>
 
-      {/* Blog Preview Section */}
-      <BlogPreview />
+      <Suspense fallback={<SectionLoader />}>
+        <LazyHowWeWorkSection />
+      </Suspense>
+
+      <Suspense fallback={<SectionLoader />}>
+        <LazyBlogPreview />
+      </Suspense>
 
       {/* FAQ Section */}
       <div id="faq" className="bg-background">
-        <FAQSection />
+        <Suspense fallback={<SectionLoader />}>
+          <LazyFAQSection />
+        </Suspense>
       </div>
 
       {/* CTA Section */}
-      <CTASection />
+      <Suspense fallback={<SectionLoader />}>
+        <LazyCTASection />
+      </Suspense>
 
       {/* Footer */}
       <div className="bg-background">

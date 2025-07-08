@@ -1,5 +1,6 @@
+
 "use client";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 
 export const TextGenerateEffect = ({
@@ -15,14 +16,16 @@ export const TextGenerateEffect = ({
     words.slice(0, latest)
   );
 
+  const animationConfig = useMemo(() => ({
+    type: "tween" as const,
+    duration: 1.5, // Reduced from 2.5 to 1.5 seconds
+    ease: "easeInOut" as const,
+  }), []);
+
   useEffect(() => {
-    const controls = animate(count, words.length, {
-      type: "tween",
-      duration: 2.5, // Increased from 1 to 2.5 seconds
-      ease: "easeInOut",
-    });
+    const controls = animate(count, words.length, animationConfig);
     return controls.stop;
-  }, [words]);
+  }, [words, count, animationConfig]);
 
   return (
     <motion.span className={className}>
